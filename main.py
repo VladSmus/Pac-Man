@@ -5,8 +5,8 @@ from class_Ghost import *
 
 pygame.init()
 pygame.mixer.init()
-# pygame.mixer.music.load('music/Pacman_Theme.mp3') Ещё одна музыка, которую можно использовать
-# pygame.mixer.music.play()
+# pygame.mixer.music.load('music/Pacman_Theme.mp3')  Another music that can be used
+# pygame.mixer.music.play()                         (Ещё одна музыка, которую можно использовать)
 pygame.mixer.music.load('music/pacmanTheme.mp3')
 pygame.mixer.music.play()
 WIDTH = 900
@@ -22,11 +22,11 @@ color = 'blue'
 PI = math.pi
 player_images = []
 
-# Цикл в котром мы перебираем 4 изображения нашего пакмана
+# The loop in it we go through 4 images of our pacman. (Цикл в котром мы перебираем 4 изображения нашего пакмана)
 for i in range(1, 5):
     player_images.append(pygame.transform.scale(pygame.image.load(f'pacman_images/{i}.png'), (45, 45)))
 
-# Координаты для появления пакмана и призраков
+# The coordinates for the appearance of Pacman and ghosts. (Координаты для появления пакмана и призраков)
 player_x = 450
 player_y = 663
 direction = 0
@@ -45,7 +45,7 @@ inky_direction = 2
 counter = 0
 flicker = False
 
-# R, L, U, D ?????????????????????
+# Right, Left, Up, Down
 turns_allowed = [False, False, False, False]
 direction_command = 0
 score = 0
@@ -75,7 +75,7 @@ def draw_misc():
     '''
     input:
     output:
-    :return:
+    :return: Cases of winning or losing / Случаи выигрыша или проигрыша
     '''
     score_text = font.render(f'Score: {score}', True, 'white')
     screen.blit(score_text, (10, 920))
@@ -102,7 +102,7 @@ def check_collisions(scor, power, power_count, eaten_ghosts):
     :param power:
     :param power_count:
     :param eaten_ghosts:
-    :return:
+    :return: Earned points / Заработанные очки
     output:
     '''
     num1 = (HEIGHT - 50) // 32
@@ -124,7 +124,7 @@ def draw_border():
     '''
     input:
     output:
-    :return:
+    :return: Рисует границу
     '''
     num1 = (HEIGHT - 50) // 32
     num2 = WIDTH // 30
@@ -162,7 +162,7 @@ def draw_player():
     """
     input:
     output:
-    :return:
+    :return: Various options for changing the direction of travel / Различные варианты изменения направления движения
     """
     # 0-RIGHT, 1-LEFT, 2-UP, 3-DOWN
     if direction == 0:
@@ -181,7 +181,7 @@ def check_position(centerx, centery):
     :param centerx:
     :param centery:
     output:
-    :return:
+    :return: проверяет позицию
     """
     turns = [False, False, False, False]
     num1 = (HEIGHT - 50) // 32
@@ -237,9 +237,9 @@ def move_player(play_x, play_y):
     :param play_x:
     :param play_y:
     output:
-    :return:
+    :return: движение игрока
     """
-    # r, l, u, d
+    # right, left, up, down
     if direction == 0 and turns_allowed[0]:
         play_x += player_speed
     elif direction == 1 and turns_allowed[1]:
@@ -263,7 +263,7 @@ def get_targets(blink_x, blink_y, ink_x, ink_y, pink_x, pink_y, clyd_x, clyd_y):
     :param clyd_x:
     :param clyd_y:
     output:
-    :return:
+    :return: Получение цели для призраков
     """
     if player_x < 450:
         runaway_x = 900
@@ -343,7 +343,7 @@ def get_targets(blink_x, blink_y, ink_x, ink_y, pink_x, pink_y, clyd_x, clyd_y):
     return [blink_target, ink_target, pink_target, clyd_target]
 
 
-# While loop
+# While loop (Цикл while)
 run = True
 while run:
     timer.tick(fps)
@@ -426,7 +426,7 @@ while run:
             inky_x, inky_y, inky_direction = inky.move_clyde()
         clyde_x, clyde_y, clyde_direction = clyde.move_clyde()
     score, power_up, power_counter, eaten_ghost = check_collisions(score, power_up, power_counter, eaten_ghost)
-    # add to if not powerup to check if eaten ghosts
+    # do not work power_up !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! не работает power_up капец :(
     if not power_up:
         if (player_circle.colliderect(blinky.rect) and not blinky.dead) or \
                 (player_circle.colliderect(inky.rect) and not inky.dead) or \

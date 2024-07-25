@@ -1,7 +1,7 @@
 # In this file, we will specify the boundaries of the playing field.
 # (В данном файле мы укажем границы игрового поля)
 # The designations are shown below, and the addicitonal_images folder contains illustrations of the corresponding designations.
-# (Ниже приведены обозначения, а в папке addicitonal_images имеются иллюстрации соответствующий обозанчений)
+# (Ниже приведены обозначения, а в папке addicitonal_images имеются иллюстрации соответствующих обозанчений)
 
 # 0 = empty black rectangle. (пустой черный прямоугольник)
 # 1 = dot. (точка)

@@ -1,4 +1,4 @@
-# В данном файле создаём класс Ghost
+# In this file, we create the Ghost class. ( В данном файле создаём класс Ghost)
 import pygame
 import copy
 from playing_field import borders
@@ -10,7 +10,7 @@ power_up = False
 eaten_ghost = [False, False, False, False]
 level = copy.deepcopy(borders)
 
-# Изображения для призраков
+# Images for ghosts. (Изображения для призраков)
 blinky_img = pygame.transform.scale(pygame.image.load(f'ghost_images/Blinky.png'), (45, 45))
 pinky_img = pygame.transform.scale(pygame.image.load(f'ghost_images/Pinky.png'), (45, 45))
 clyde_img = pygame.transform.scale(pygame.image.load(f'ghost_images/Clyde.png'), (45, 45))
@@ -22,12 +22,14 @@ spooked_img = pygame.transform.scale(pygame.image.load(f'ghost_images/spooked.pn
 class Ghost:
     '''
     input:
+    Includes functions on the logic of the movement of ghosts, obstacle checks and auxiliary functions
+    / Включает в себя функции по логике передвижения призраков, проверку препятствий и вспомогательные функции
     output:
     '''
 
     def __init__(self, x_coord, y_coord, target, speed, img, direct, dead, box, id):
         '''
-        input:
+        input: Initialization of the main parameters / Инициализация основных параметров
         :param x_coord:
         :param y_coord:
         :param target:
@@ -72,7 +74,7 @@ class Ghost:
         '''
         input:
         output:
-        :return:
+        :return: Проверяет препятствия
         '''
         # Right, Left, Up, Down (R,L,U,D)
         num1 = (HEIGHT - 50) // 32
@@ -154,7 +156,8 @@ class Ghost:
         :return:
         '''
         # right, left, up, down
-        # clyde is going to turn whenever advantegeous for pursuit
+        # clyde is going to turn whenever advantegeous for pursuit.
+        # (клайд собирается поворачивать всякий раз, когда это будет выгодно для преследования)
         if self.direction == 0:
             if self.target[0] > self.x_pos and self.turns[0]:
                 self.x_pos += self.speed
@@ -299,6 +302,7 @@ class Ghost:
         '''
         # right, left, up, down
         # blinky is going to turn whenever colliding with walls, otherwise continue straight
+        # (блинк будет поворачивать всякий раз, когда столкнется со стенами, в противном случае продолжает движение прямо)
         if self.direction == 0:
             if self.target[0] > self.x_pos and self.turns[0]:
                 self.x_pos += self.speed
@@ -410,6 +414,7 @@ class Ghost:
         '''
         # right, left, up, down
         # inky turns up or down at any point to pursue, but left and right only on collision
+        # (инки поворачивает вверх или вниз в любой момент для преследования, но влево и вправо - только при столкновении)
         if self.direction == 0:
             if self.target[0] > self.x_pos and self.turns[0]:
                 self.x_pos += self.speed
@@ -536,7 +541,8 @@ class Ghost:
         :return:
         '''
         # right, left, up, down
-        # inky is going to turn left or right whenever advantageous, but only up or down on collision
+        # pinky is going to turn left or right whenever advantageous, but only up or down on collision
+        # (пинки будет поворачивать влево или вправо, когда это будет выгодно, но только вверх или вниз при столкновении)
         if self.direction == 0:
             if self.target[0] > self.x_pos and self.turns[0]:
                 self.x_pos += self.speed
